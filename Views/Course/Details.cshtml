@@ -1,0 +1,22 @@
+@model _091.Models.Course
+@using _091.Extensions
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<div class="clay-card" style="max-width: 600px; margin: 40px auto;">
+    <h2 style="margin-top:0; color: #4f46e5;">📖 Course Specifications</h2>
+    <hr style="border: 0; height: 1px; background: #cbd5e1; margin-bottom: 20px;" />
+
+    <p><strong>Course ID:</strong> @Model.CourseId</p>
+    <p><strong>Course Name:</strong> @Model.CourseName</p>
+    <p><strong>Duration:</strong> @Model.Duration</p>
+    <p><strong>Base Fees:</strong> $@Model.Fees.ToString("0.00")</p>
+    <p><strong>Discount Rate:</strong> @Model.DiscountPercentage%</p>
+    <p style="font-size: 1.2rem;"><strong>Final Calculated Fees:</strong> <span style="color: #10b981;">$@Model.CalculateFinalFees().ToString("0.00")</span></p>
+
+    <div style="margin-top: 30px; display: flex; gap: 15px;">
+        <a href="@Url.Action("Enroll", "Course", new { courseId = Model.CourseId })" class="clay-btn clay-btn-primary">Proceed to Enroll</a>
+        <a href="@Url.Action("Index", "Course")" class="clay-btn">Back to Catalog</a>
+    </div>
+</div>

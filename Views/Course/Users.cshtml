@@ -1,0 +1,33 @@
+@model IEnumerable<_091.Models.UserViewModel>
+@{
+    ViewData["Title"] = "Async API Users";
+}
+
+<div class="clay-card">
+    <h1 style="margin-top:0;">🌐 Remote User Information</h1>
+    <p>Asynchronously fetched user data from <code>https://jsonplaceholder.typicode.com/users</code>.</p>
+</div>
+
+<div class="clay-card">
+    <table class="clay-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email Address</th>
+                <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td><strong>@user.Name</strong></td>
+                    <td>@user.Email</td>
+                    <td><span style="background: #e0e7ff; padding: 6px 12px; border-radius: 8px; color: #3730a3;">@user.Company.Name</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

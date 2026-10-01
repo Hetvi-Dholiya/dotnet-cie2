@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - _091 Course Portal</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container" style="max-width: 1140px; margin: 0 auto; padding: 0 15px;">
+        <nav class="clay-nav">
+            <div>
+                <a href="@Url.Action("Index", "Course")" class="clay-btn" style="font-weight: 700; font-size: 1.1rem;">🎓 _091 Portal</a>
+            </div>
+            <div>
+                <a href="@Url.Action("Index", "Course")" class="clay-btn" style="margin-right: 10px;">Courses</a>
+                <a href="@Url.Action("Users", "Course")" class="clay-btn">API Users</a>
+            </div>
+        </nav>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="clay-card" style="background: #dcfce7; color: #166534; text-align: center;">
+                <strong>@TempData["SuccessMessage"]</strong>
+            </div>
+        }
+
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+</body>
+</html>

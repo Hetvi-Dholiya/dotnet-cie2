@@ -1,0 +1,53 @@
+@model IEnumerable<_091.Models.Course>
+@{
+    ViewData["Title"] = "Course Catalog";
+}
+
+<div class="clay-card">
+    <h1 style="margin-top:0;">📚 Course Catalog & Management</h1>
+    <p>Explore our certified online courses cached in memory and calculated with custom extension methods.</p>
+
+    <!-- Cookie State Form -->
+    <form method="get" asp-action="Index" style="margin-top: 20px; display: flex; gap: 15px; align-items: center;">
+        <input type="text" name="studentName" value="@ViewBag.StudentName" placeholder="Enter your name (Cookie Storage)..." class="clay-input" style="margin-bottom:0; flex:1;" />
+        <button type="submit" class="clay-btn clay-btn-primary">Set Cookie</button>
+    </form>
+    @if (!string.IsNullOrEmpty(ViewBag.StudentName))
+    {
+        <p style="margin-top: 10px; font-size: 0.9rem; color: #4f46e5;">✨ Welcome back, <strong>@ViewBag.StudentName</strong> (Stored in Cookie)</p>
+    }
+</div>
+
+<div class="clay-card">
+    <h2>Available Courses</h2>
+    <table class="clay-table">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Duration</th>
+                <th>Standard Fees</th>
+                <th>Discount</th>
+                <th>Final Fees</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td><strong>@course.CourseName</strong></td>
+                    <td>@course.Duration</td>
+                    <td>$@course.Fees.ToString("0.00")</td>
+                    <td>@course.DiscountPercentage%</td>
+                    <td style="color: #10b981; font-weight: bold;">$@course.CalculateFinalFees().ToString("0.00")</td>
+                    <td>
+                        <!-- Query String & Details Link -->
+                        <a href="@Url.Action("Details", "Course", new { courseId = course.CourseId })" class="clay-btn" style="padding: 8px 16px; font-size: 0.85rem; margin-right: 5px;">Details</a>
+                        <!-- Enroll Action -->
+                        <a href="@Url.Action("Enroll", "Course", new { courseId = course.CourseId })" class="clay-btn clay-btn-primary" style="padding: 8px 16px; font-size: 0.85rem;">Enroll</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

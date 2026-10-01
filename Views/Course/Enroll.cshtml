@@ -1,0 +1,26 @@
+@model _091.Models.EnrollmentViewModel
+@{
+    ViewData["Title"] = "Course Enrollment";
+}
+
+<div class="clay-card" style="max-width: 550px; margin: 40px auto;">
+    <h2 style="margin-top:0; color: #4f46e5;">📝 Confirm Enrollment</h2>
+    <p>Complete your registration for <strong>@Model.CourseName</strong>.</p>
+
+    <form method="post" asp-action="Enroll">
+        <!-- Hidden Field State Management -->
+        <input type="hidden" asp-for="CourseId" />
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Student Name (from Cookie/Session)</label>
+            <input type="text" asp-for="StudentName" class="clay-input" readonly />
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Selected Course</label>
+            <input type="text" asp-for="CourseName" class="clay-input" readonly />
+        </div>
+
+        <button type="submit" class="clay-btn clay-btn-primary" style="width: 100%; text-align: center;">Confirm & Submit Enrollment</button>
+    </form>
+</div>
